@@ -1,9 +1,8 @@
 var express = require('express');
+const utility_controlers= require('../controllers/utility');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('utilities', { title: 'Search Results Utilities' });
-});
+/* GET utility */
 
+router.get('/', utility_controlers.utility_view_all_Page );
 module.exports = router;
