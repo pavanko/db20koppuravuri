@@ -49,6 +49,7 @@ exports.utility_delete = function(req, res) {
  
 // Handle Utility update form on PUT. 
 exports.utility_update_put = function(req, res) { 
+    
     res.send('NOT IMPLEMENTED: Utility update PUT' + req.params.id); 
 }; 
 
@@ -77,3 +78,24 @@ exports.utility_view_all_Page = async function (req, res) {
         res.send(`{"error": ${err}}`);
     }
 };
+
+//Handle Costume update form on PUT. 
+exports.costume_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await Costume.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.Name)  
+               toUpdate.Name = req.body.Name; 
+        if(req.body.Uses) toUpdate.Uses = req.body.Uses; 
+        if(req.body.Cost) toUpdate.Cost = req.body.Cost; 
+        let result = await toUpdate.save(); 
+        console.log("Sucess " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`); 
+    } 
+}; 
