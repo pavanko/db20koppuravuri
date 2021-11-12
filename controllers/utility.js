@@ -9,6 +9,18 @@ exports.utility_list = function(req, res) {
 exports.utility_detail = function(req, res) { 
     res.send('NOT IMPLEMENTED: Utility detail: ' + req.params.id); 
 }; 
+
+// for a specific utility. 
+exports.utility_detail = async function(req, res) { 
+    console.log("detail"  + req.params.id) 
+    try { 
+        result = await Utility.findById(req.params.id) 
+        res.send(result) 
+    } catch (error) { 
+        res.status(500) 
+        res.send(`{"error": document for id ${req.params.id} not found`); 
+    } 
+}; 
  
 // Handle Utility create on POST. 
 exports.utility_create_post =async function(req, res) { 

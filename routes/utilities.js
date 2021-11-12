@@ -6,3 +6,6 @@ var router = express.Router();
 
 router.get('/', utility_controlers.utility_view_all_Page );
 module.exports = router;
+
+// GET request for one utility. 
+router.get('/utility/:id', utility_controlers.utility_detail); 
