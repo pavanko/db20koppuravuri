@@ -1,0 +1,43 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let costumeid = toShow._id 
+  - let Name = toShow.Name 
+  - let Uses = toShow.Uses 
+  - let Cost = toShow.Cost 
+   
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{costumeid} 
+  - let actionid = "/resource/utility/" + costumeid 
+  form(id='UtilityForm', action= actionid, method="PUT") 
+    div.form-group 
+        label.costumeAttr(for='Name') Costume type 
+        input#Name(type='text', name='Name', value= Name ) 
+    div.form-group 
+        label.costumeAttr(for='Uses') Costume size 
+        input#Uses(type='text', name='Uses', value= Uses ) 
+    div.form-group 
+        label.costumeAttr(for='Cost') Costume cost 
+        input#Cost(type='number', name='Cost', value= Cost ) 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['UtilityForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    }); 

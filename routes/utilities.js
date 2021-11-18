@@ -13,4 +13,6 @@ router.get('/utility/:id', utility_controlers.utility_detail);
 router.get('/detail', utility_controlers.utility_view_one_Page); 
 /* GET create utility page */ 
 router.get('/create', utility_controlers.utility_create_Page); 
+/* GET create update page */ 
+router.get('/update', utility_controlers.utility_update_Page); 
 module.exports = router;
