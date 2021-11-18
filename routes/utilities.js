@@ -15,4 +15,6 @@ router.get('/detail', utility_controlers.utility_view_one_Page);
 router.get('/create', utility_controlers.utility_create_Page); 
 /* GET create update page */ 
 router.get('/update', utility_controlers.utility_update_Page); 
+/* GET create costume page */ 
+router.get('/delete', utility_controlers.utility_delete_Page); 
 module.exports = router;
