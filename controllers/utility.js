@@ -116,3 +116,17 @@ failed`);
         res.send(`{'error': '${err}'}`); 
     } 
 }; 
+
+ // Handle building the view for creating a utility. 
+// No body, no in path parameter, no query. 
+// Does not need to be async 
+exports.utility_create_Page =  function(req, res) { 
+    console.log("create view") 
+    try{ 
+        res.render('utilitycreate', { title: 'Utility Create'}); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 

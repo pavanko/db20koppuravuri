@@ -11,5 +11,6 @@ router.get('/', utility_controlers.utility_view_all_Page );
 router.get('/utility/:id', utility_controlers.utility_detail); 
 /* GET detail utility page */ 
 router.get('/detail', utility_controlers.utility_view_one_Page); 
-
+/* GET create utility page */ 
+router.get('/create', utility_controlers.utility_create_Page); 
 module.exports = router;
