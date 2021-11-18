@@ -43,8 +43,17 @@ exports.utility_create_post =async function(req, res) {
 }; 
  
 // Handle Utility delete form on DELETE. 
-exports.utility_delete = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Utility delete DELETE ' + req.params.id); 
+// Handle Utility delete on DELETE. 
+exports.utility_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await Utility.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
 }; 
 
 // List of all Utilitys
@@ -73,7 +82,7 @@ exports.utility_view_all_Page = async function (req, res) {
     }
 };
 
-//Handle Costume update form on PUT. 
+//Handle Utility update form on PUT. 
 exports.utility_update_put = async function(req, res) { 
     console.log(`update on id ${req.params.id} with body 
 ${JSON.stringify(req.body)}`) 
@@ -91,5 +100,19 @@ ${JSON.stringify(req.body)}`)
         res.status(500) 
         res.send(`{"error": ${err}: Update for id ${req.params.id} 
 failed`); 
+    } 
+}; 
+
+ // Handle a show one view with id specified by query 
+ exports.utility_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await Utility.findById( req.query.id) 
+        res.render('utilitydetail',  
+{ title: 'Utility Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
     } 
 }; 
