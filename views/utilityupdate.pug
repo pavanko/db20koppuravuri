@@ -15,14 +15,14 @@ block content
   form(id='UtilityForm', action= actionid, method="PUT") 
     div.form-group 
         label.costumeAttr(for='Name') Costume type 
-        input#Name(type='text', name='Name', value= Name ) 
+        input#Name(type='text', class='form-control' name='Name', value= Name ) 
     div.form-group 
         label.costumeAttr(for='Uses') Costume size 
-        input#Uses(type='text', name='Uses', value= Uses ) 
+        input#Uses(type='text', class='form-control' name='Uses', value= Uses ) 
     div.form-group 
         label.costumeAttr(for='Cost') Costume cost 
-        input#Cost(type='number', name='Cost', value= Cost ) 
-    input(type="submit") 
+        input#Cost(type='number', class='form-control' name='Cost', value= Cost ) 
+    input(type="submit" class='btn btn-primary') 
  
   script. 
     document.forms['UtilityForm'].addEventListener('submit', (event) => { 
